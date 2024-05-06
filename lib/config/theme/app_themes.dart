@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:time_ledger/config/theme/app_text_themes.dart';
+import 'app_colors.dart';
 
 ThemeData theme() {
   return ThemeData(
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: AppColors.background,
+      colorScheme: AppColors.myCustomColorScheme,
       fontFamily: 'Muli',
-      appBarTheme: appBarTheme());
+      textTheme: AppTextTheme.lightTextTheme,
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.secondaryColor,
+      ),
+      appBarTheme: appBarTheme(),
+      elevatedButtonTheme: elevatedButtonTheme());
 }
 
 AppBarTheme appBarTheme() {
   return const AppBarTheme(
-    color: Colors.white,
+    color: AppColors.background,
     elevation: 0,
     centerTitle: true,
-    iconTheme: IconThemeData(color: Color(0XFF8B8B8B)),
-    titleTextStyle: TextStyle(color: Color(0XFF8B8B8B), fontSize: 18),
+    iconTheme: IconThemeData(color: AppColors.secondaryColor),
+    titleTextStyle: TextStyle(color: AppColors.secondaryColor, fontSize: 18),
+  );
+}
+
+ElevatedButtonThemeData elevatedButtonTheme() {
+  return ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(AppColors.secondaryColor),
+      foregroundColor: MaterialStateProperty.all(AppColors.onSecondary),
+    ),
   );
 }
