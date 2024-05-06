@@ -3,14 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:time_ledger/core/navigation/page_config.dart';
 
-/// Parses a URL string into a [PageConfiguration] object.
+/// Parses a URL [Uri] into a [PageConfiguration] object.
 class PageInformationParser extends RouteInformationParser<PageConfiguration> {
   @override
   Future<PageConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {
-    // Parse the URI from the route location
-    final uri = Uri.parse(routeInformation.uri as String);
-
+    // Access the uri property directly
+    final uri = routeInformation.uri;
     // Check the path and return the appropriate page configuration
     if (uri.path == '/home') {
       return const PageConfiguration(PageType.home);
@@ -21,7 +20,7 @@ class PageInformationParser extends RouteInformationParser<PageConfiguration> {
 
   @override
   RouteInformation? restoreRouteInformation(PageConfiguration configuration) {
-    // Convert the [PageConfiguration] back to a URL string
+    // Convert the [PageConfiguration] back to a [Uri]
     switch (configuration.type) {
       case PageType.home:
         return RouteInformation(uri: Uri.parse('/home'));

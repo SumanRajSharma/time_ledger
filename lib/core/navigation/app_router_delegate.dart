@@ -7,6 +7,7 @@ import 'page_config.dart';
 
 class AppRouterDelegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
+  @override
   final GlobalKey<NavigatorState> navigatorKey;
   final ManageAuthentication manageAuthentication;
   final AppState appState;
@@ -45,7 +46,7 @@ class AppRouterDelegate extends RouterDelegate<PageConfiguration>
       key: navigatorKey,
       pages: [
         if (!appState.isLoggedIn)
-          MaterialPage(child: LoginPage())
+          const MaterialPage(child: LoginPage())
         else
           const MaterialPage(child: HomeScreen()),
       ],
