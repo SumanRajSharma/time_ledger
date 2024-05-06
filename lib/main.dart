@@ -12,8 +12,10 @@ import 'injection_container.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:time_ledger/config/theme/app_themes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
+  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await initHiveForFlutter();
   di.init();
