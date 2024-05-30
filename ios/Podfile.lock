@@ -3,12 +3,15 @@ PODS:
     - Flutter
     - ReachabilitySwift
   - Flutter (1.0.0)
+<<<<<<< HEAD
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
   - flutter_native_splash (0.0.1):
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
+=======
+>>>>>>> 2fa5935bceee92ee0bf84661c7a037dc5327ddc0
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -17,9 +20,12 @@ PODS:
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
+<<<<<<< HEAD
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+=======
+>>>>>>> 2fa5935bceee92ee0bf84661c7a037dc5327ddc0
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
 
 SPEC REPOS:
@@ -31,21 +37,29 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
     :path: Flutter
+<<<<<<< HEAD
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_native_splash:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+=======
+>>>>>>> 2fa5935bceee92ee0bf84661c7a037dc5327ddc0
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
+<<<<<<< HEAD
   connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_secure_storage: 23fc622d89d073675f2eaa109381aefbcf5a49be
+=======
+  connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+>>>>>>> 2fa5935bceee92ee0bf84661c7a037dc5327ddc0
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   ReachabilitySwift: 5ae15e16814b5f9ef568963fb2c87aeb49158c66
 
