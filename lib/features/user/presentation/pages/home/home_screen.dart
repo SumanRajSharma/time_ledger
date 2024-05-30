@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:time_ledger/features/user/presentation/pages/home/settings.dart';
-import 'package:time_ledger/features/user/presentation/widgets/app_bar.dart';
+import 'package:time_ledger/features/user/presentation/pages/home/clockin_screen.dart';
+import 'package:time_ledger/features/user/presentation/pages/profile/profile_screen.dart';
 import 'package:time_ledger/features/user/presentation/widgets/nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,15 +15,14 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime? _selectedDate;
   // List of pages
   final List<Widget> _widgetOptions = <Widget>[
-    const Text('Home Tab',
+    const ClockInPage(),
+    const Text('Track Tab',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const Text('Profile Tab',
+    const Text('Dahboard',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    const SettingsPage(),
     const Text('Invoices Tab',
-        style: TextStyle(
-            fontSize: 35,
-            fontWeight: FontWeight.bold)), // Directly using SettingsPage here
+        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    const ProfileScreen(), // Directly using SettingsPage here
   ];
 
   void _onItemTapped(int index) {
@@ -38,20 +37,50 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     appBar: CustomAppBar(
+  //         selectedIndex: _selectedIndex,
+  //         selectedDate: DateTime.now(),
+  //         onDateSelected: _onDateSelected),
+  //     body: Center(
+  //       child: _widgetOptions.elementAt(_selectedIndex),
+  //     ),
+  //     bottomNavigationBar: BottomNavigation(
+  //       selectedIndex: _selectedIndex,
+  //       onItemSelected: _onItemTapped,
+  //     ),
+  //   );
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-          selectedIndex: _selectedIndex,
-          selectedDate: DateTime.now(),
-          onDateSelected: _onDateSelected),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      // appBar:
+      // CustomAppBar(
+      //     selectedIndex: _selectedIndex,
+      //     selectedDate: DateTime.now(),
+      //     onDateSelected: _onDateSelected),
+      body: Stack(
+        children: [
+          // The main content or background of your app
+          Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
+          ),
+          // Navigation bar placed on top of the main content
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: BottomNavigation(
+          //     selectedIndex: _selectedIndex,
+          //     onItemSelected: _onItemTapped,
+          //   ),
+          // ),
+        ],
       ),
       bottomNavigationBar: BottomNavigation(
-        selectedIndex: _selectedIndex,
-        onItemSelected: _onItemTapped,
-      ),
+          selectedIndex: _selectedIndex,
+          onItemSelected:
+              _onItemTapped), // Make the scaffold itself transparent
     );
   }
 }

@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       title: Row(
         children: [
           Image.asset('assets/logo/logo2.png', width: 24, height: 24),
@@ -28,10 +28,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: Theme.of(context).colorScheme.secondary)),
         ],
       ),
-      actions: [
-        if (selectedIndex == 1) _buildExtraIcon(context),
-        _buildMenuButton(context),
-      ],
+      // actions: [
+      //   if (selectedIndex == 1) _buildExtraIcon(context),
+      //   _buildMenuButton(context),
+      // ],
       elevation: 0,
     );
   }
