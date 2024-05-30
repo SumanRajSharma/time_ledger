@@ -34,11 +34,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   /// Handles the logout event.
   Future<void> _onLogout(
       LogoutButtonPressed event, Emitter<AuthState> emit) async {
+    emit(const AuthLoading());
     final result = await logoutUserUseCase.call(params: NoParams());
     if (result is DataSuccess) {
+      await Future.delayed(const Duration(seconds: 1));
       emit(const Unauthenticated());
     } else {
-      emit(const AuthError('Failed to log out'));
+      emit(const AuthError('Failed to log out, Try after sometime.'));
     }
   }
 }

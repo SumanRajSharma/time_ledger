@@ -3,13 +3,17 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:time_ledger/core/resources/data_state.dart';
 import 'package:time_ledger/features/auth/domain/entities/login.dart';
 import 'package:time_ledger/features/auth/domain/usecases/get_login_token.dart';
+import 'package:time_ledger/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:time_ledger/features/auth/presentation/bloc/auth_event.dart';
 import 'package:time_ledger/features/auth/presentation/bloc/login_event.dart';
 import 'package:time_ledger/features/auth/presentation/bloc/login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GetLoginTokenUseCase getLoginTokenUseCase;
+  final AuthBloc authBloc;
 
-  LoginBloc(this.getLoginTokenUseCase) : super(const LoginInitial()) {
+  LoginBloc(this.getLoginTokenUseCase, this.authBloc)
+      : super(const LoginInitial()) {
     on<LoginButtonPressed>(_onLoginButtonPressed);
   }
 
@@ -21,6 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           .call(params: {'email': event.email, 'password': event.password});
 
       if (result is DataSuccess<LoginEntity>) {
+        authBloc.add(const CheckSession());
         emit(LoginSuccess(result.data!));
       } else if (result is DataFailed<LoginEntity>) {
         emit(LoginFailure(

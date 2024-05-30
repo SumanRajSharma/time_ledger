@@ -1,8 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:time_ledger/core/resources/data_state.dart';
-
 import 'package:time_ledger/features/auth/data/models/login_response.dart';
-
 import 'package:time_ledger/features/auth/domain/repository/login_repository.dart';
 import 'package:time_ledger/features/auth/data/data_sources/login_query.dart';
 import 'package:time_ledger/service/token_service.dart';

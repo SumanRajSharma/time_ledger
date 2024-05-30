@@ -26,9 +26,6 @@ class CustomActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonStyle = ElevatedButton.styleFrom(
       backgroundColor: buttonColor ?? Theme.of(context).colorScheme.secondary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-      ),
       padding: padding,
     );
 

@@ -35,7 +35,7 @@ class AnimatedTextFieldState extends State<AnimatedTextField>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _fontSizeAnimation = Tween<double>(begin: 18, end: 20).animate(_controller);
+    _fontSizeAnimation = Tween<double>(begin: 16, end: 18).animate(_controller);
 
     widget.textFocusNode.addListener(() {
       if (widget.textFocusNode.hasFocus) {
@@ -58,6 +58,7 @@ class AnimatedTextFieldState extends State<AnimatedTextField>
       animation: _controller,
       builder: (context, child) {
         return TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: widget.textController,
           focusNode: widget.textFocusNode,
           obscureText: widget.isObscure,

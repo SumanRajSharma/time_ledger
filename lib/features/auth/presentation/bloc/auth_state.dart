@@ -28,6 +28,10 @@ class CheckingSession extends AuthState {
   const CheckingSession();
 }
 
+class AuthLoading extends AuthState {
+  const AuthLoading();
+}
+
 /// State for representing authentication errors.
 class AuthError extends AuthState {
   final String message;

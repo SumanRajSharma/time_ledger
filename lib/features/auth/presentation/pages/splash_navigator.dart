@@ -17,7 +17,7 @@ class SplashNavigator extends StatelessWidget {
           // Protect the home screen with AuthGuard
           return const AuthGuard(child: HomeScreen());
         } else if (state is NavigateToLogin) {
-          return LoginPage();
+          return const LoginPage();
         } else {
           return const Scaffold(
             body: Center(

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:time_ledger/core/util/keyboard_visibility_widget.dart';
-import 'package:time_ledger/core/util/loading_overlay_widget.dart';
 import 'package:time_ledger/features/auth/domain/usecases/manage_authentication.dart';
 import 'package:time_ledger/features/auth/presentation/widgets/animated_textfield_widget.dart';
 import 'package:time_ledger/features/auth/presentation/widgets/custom_action_button_widget.dart';
 import 'package:time_ledger/features/auth/presentation/widgets/login_page_widgets/forgot_password_widget.dart';
 import 'package:time_ledger/features/auth/presentation/widgets/login_page_widgets/login_text_widget.dart';
 import 'package:time_ledger/features/auth/presentation/widgets/login_page_widgets/logo_widget.dart';
+import 'package:time_ledger/features/user/presentation/pages/home/create_user.dart';
 import 'package:time_ledger/injection_container.dart';
 import 'package:time_ledger/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:time_ledger/features/auth/presentation/bloc/login_event.dart';
@@ -55,24 +56,24 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final manageAuth = sl<ManageAuthentication>();
     return BlocProvider<LoginBloc>(
-      create: (context) =>
-          sl<LoginBloc>(), // Get the LoginBloc instance from Service Locator
+      create: (context) => sl<LoginBloc>(),
       child: KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
         return Scaffold(
           body: BlocConsumer<LoginBloc, LoginState>(
             listener: (context, state) {
               if (state is LoginFailure) {
+                context.loaderOverlay.hide();
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(state.error)));
               }
               if (state is LoginSuccess) {
+                context.loaderOverlay.hide();
                 manageAuth.login();
               }
             },
             builder: (context, state) {
               if (state is LoginLoading) {
-                return const Center(
-                    child: LoadingOverlay(loadingText: 'Signing In...'));
+                context.loaderOverlay.show(progress: 'Signing In..');
               }
               return _buildLoginForm(context, isKeyboardVisible);
             },
@@ -132,10 +133,10 @@ class LoginPageState extends State<LoginPage> {
                     CustomActionButton(
                       label: 'Login',
                       onPressed: () => _onLoginButtonPressed(context),
-                      buttonColor: Theme.of(context).colorScheme.secondary,
-                      textColor: Theme.of(context).colorScheme.onSecondary,
+                      buttonColor: Theme.of(context).colorScheme.primary,
+                      textColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -149,15 +150,15 @@ class LoginPageState extends State<LoginPage> {
                         CustomActionButton(
                           label: 'Register',
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const RegistrationScreen()),
-                            // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const CreateUserPage()),
+                            );
                           },
                           isElevated: false,
                           isBoldText: true,
-                          textColor: Theme.of(context).colorScheme.onSurface,
+                          textColor: Theme.of(context).colorScheme.primary,
                         ),
                       ],
                     ),
@@ -172,6 +173,8 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void _onLoginButtonPressed(BuildContext context) {
+    // Dismiss the keyboard
+    FocusScope.of(context).unfocus();
     if (_formKey.currentState!.validate()) {
       BlocProvider.of<LoginBloc>(context).add(
         LoginButtonPressed(
