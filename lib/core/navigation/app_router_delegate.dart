@@ -37,6 +37,8 @@ class AppRouterDelegate extends RouterDelegate<PageConfiguration>
       case PageType.login:
         manageAuthentication.logout();
         break;
+      case PageType.profile:
+        break;
     }
   }
 

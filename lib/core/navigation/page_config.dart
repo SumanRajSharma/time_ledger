@@ -1,4 +1,4 @@
-enum PageType { login, home }
+enum PageType { login, home, profile }
 
 class PageConfiguration {
   final PageType type;

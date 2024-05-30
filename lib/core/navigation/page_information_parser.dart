@@ -26,6 +26,8 @@ class PageInformationParser extends RouteInformationParser<PageConfiguration> {
         return RouteInformation(uri: Uri.parse('/home'));
       case PageType.login:
         return RouteInformation(uri: Uri.parse('/login'));
+      case PageType.profile:
+        return RouteInformation(uri: Uri.parse('/profile'));
     }
   }
 }
